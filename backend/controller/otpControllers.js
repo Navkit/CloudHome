@@ -9,7 +9,7 @@ const sendOTPMail = async (email, otp) => {
             secure: true,
             port: 465,
             auth: {
-                user:"cloudhome464@gmail.com",
+                user: process.env.NODEMAILER_MAIL_USER,
                 pass: process.env.NODEMAILER_MAIL_PASS,
             },
         });
