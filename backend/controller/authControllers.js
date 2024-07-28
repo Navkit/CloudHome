@@ -1,51 +1,51 @@
 const UserModel = require("../model/userModel");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 
 const getUserByEmail = async (email) => {
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email })
     return user;
-};
+}
 
 const generateJWTToken = (obj) => {
-    const token = jwt.sign(
-        {
-            exp: Math.floor(Date.now() / 1000) + 60 * 60 * 100, // seconds
-            data: obj,
-        },
+    const token = jwt.sign({
+        exp: Math.floor(Date.now()/ 1000) + (60 * 60) * 100, 
+        data: obj,
+    },
         process.env.JWT_SECRET_KEY
-    );
-    return token;
-};
+    )
+    return token
+}
 
 const signup = async (req, res) => {
-    try {
-        const { email, password } = req.body;
 
-        if (!password || !email) {
+    try {
+        const { email, name, password } = req.body;
+
+        if (!email || !name || !password) {
             res.status(400).json({
-                status: "fail",
-                message: "Invalid password or email",
+                status: "Fail",
+                message: "Please fill all details",
                 data: {},
             });
             return;
         }
 
         const user = await getUserByEmail(email);
+
         if (user) {
             res.status(400).json({
-                status: "fail",
-                message: "User already exists",
+                status: "Fail",
+                message: "Email already registered with an account",
                 data: {},
             });
             return;
         }
 
-        const newUser = await UserModel.create({ email, password });
+        const newUser = await UserModel.create({ email, name, password });
 
-        res.status(201);
-        res.json({
+        res.status(201).json({
             status: "success",
-            message: "User created",
+            message: "User Created",
             data: {
                 user: {
                     _id: newUser._id,
@@ -53,78 +53,82 @@ const signup = async (req, res) => {
                     isEmailVerified: newUser.isEmailVerified,
                 },
             },
-        });
-    } catch (err) {
-        console.log("------------------------------------");
-        console.log(err);
-        console.log("------------------------------------");
-        res.status(500).json({
-            status: "fail",
-            message: "Internal Server Error",
-            data: err,
-        });
+        })
+
     }
-};
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            status: "Fail",
+            message: "Internal server error",
+            data: error
+        })
+    }
+
+}
+
 
 const login = async (req, res) => {
+
     try {
+
         const { email, password } = req.body;
 
-        if (!password || !email) {
+        if (!email || !password) {
             res.status(400).json({
-                status: "fail",
-                message: "Invalid password or email",
+                status: "Fail",
+                message: "Please fill all details",
                 data: {},
             });
             return;
         }
 
         const user = await getUserByEmail(email);
+
         if (!user) {
             res.status(400).json({
-                status: "fail",
-                message: "Invalid user",
+                status: "Fail",
+                message: "invalid User",
                 data: {},
             });
             return;
         }
 
-        const isCorrect = await user.verifyPassword(password, user.password);
+        const isCorrect = await user.verifyPassword(password, user.password)
         if (!isCorrect) {
             res.status(400).json({
-                status: "fail",
-                message: "Incorrect password",
+                status: "Fail",
+                message: "Incorrect Password",
                 data: {},
             });
             return;
         }
 
-        res.status(200);
-        res.json({
-            status: "success",
+        res.status(200).json({
+            status: "Success",
             data: {
                 user: {
                     email: user.email,
                     _id: user._id,
                     name: user.name,
-                    isEmailVerified: user.isEmailVerified,
+                    isEmailVerified: user.isEmailVerified
                 },
-                token: generateJWTToken({ _id: user._id, email: user.email }),
-            },
-        });
-    } catch (err) {
-        console.log("------------------------------------");
-        console.log(err);
-        console.log("------------------------------------");
-        res.status(500).json({
-            status: "fail",
-            message: "Internal Server Error",
-            data: err,
-        });
-    }
-};
 
-module.exports = {
-    signup,
-    login,
-};
+                token: generateJWTToken({ _id: user._id, email: user.email })
+            }
+        })
+
+    }
+
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            status: "Fail",
+            message: "Internal server error",
+            data: error
+        })
+    }
+}
+
+
+module.exports = { signup, login }
