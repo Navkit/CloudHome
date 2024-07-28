@@ -4,6 +4,7 @@ import Navbar from "../components/navbar/index";
 import { useSelector } from "react-redux";
 import useGenerateOtp from "../hooks/useGenerateNewOtp";
 import useVerifyOtp from "../hooks/useVerifyOtp";
+import "../styles/otpPage.css";
 
 const OtpPage = () => {
   const { email } = useSelector((e) => e.auth);

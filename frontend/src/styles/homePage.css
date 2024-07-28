@@ -1,153 +1,85 @@
-/* General Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-.homepage-main-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px 40px;
-    background-color: #110c0c;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.homepage-main-container:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Header Styles */
-h3 {
-    color: #444;
-    margin-bottom: 20px;
-    font-size: 28px;
-    text-align: center;
-}
-
-/* Navigation Styles */
-.breadcrumb {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    gap: 10px;
-    align-items: center;
-}
-
-.breadcrumb li {
+/* Logout Button */
+.logout-button {
+    background-color: #ff4b4b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    color: #007bff;
-    font-weight: bold;
-    transition: color 0.2s;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
-.breadcrumb li:hover {
-    color: #0056b3;
-    text-decoration: underline;
+.logout-button:hover {
+    background-color: #e03e3e;
+    transform: scale(1.05);
 }
 
-/* Action Buttons */
-.actions {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    gap: 15px;
-}
-
-.actions button {
+/* Create Folder Button */
+.create-folder-button {
     background-color: #28a745;
     color: #fff;
     border: none;
     padding: 12px 24px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
     font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 20px;
 }
 
-.actions button:hover {
+.create-folder-button:hover {
     background-color: #218838;
     transform: scale(1.05);
 }
 
-.file-upload-input {
+/* File Upload Section */
+.file-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.file-upload-container input[type="file"] {
     display: none;
 }
 
-/* Folder/File Display */
-.files {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.folder-file {
-    background-color: #e9f7fd;
-    border: 1px solid #007bff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 180px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.folder-file:hover {
-    background-color: #d4effc;
-    transform: translateY(-5px);
-}
-
-.folder-file p {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: #007bff;
-}
-
-/* Create Folder Modal */
-.create-folder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.create-folder input {
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.create-folder button {
-    background-color: #007bff;
+.file-upload-container label {
+    background-color: #3498db;
     color: #fff;
-    border: none;
-    padding: 12px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
     font-size: 16px;
-    width: 100%;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 10px;
 }
 
-.create-folder button:hover {
-    background-color: #0056b3;
+.file-upload-container label:hover {
+    background-color: #2980b9;
     transform: scale(1.05);
+}
+
+.uploaded-file-name {
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* General button styling for consistency */
+button {
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+button:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
