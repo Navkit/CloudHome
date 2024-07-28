@@ -5,25 +5,30 @@ const useCreateFolder = () => {
 
     const createFolder = async ({ name, parentId }) => {
         try {
-            const res = await fetch(`https://cloudhome-8fkj.onrender.com/api/v1/folder/create`, {
+
+            const res = await fetch(`${process.env.BACKEND_URL}/api/v1/folder/create`, {
                 method: "POST",
                 body: JSON.stringify({
-                    name,
-                    parentId,
+                    name, parentId
                 }),
+
                 headers: {
                     "content-type": "application/json",
-                    authorization: "Bearer " + token,
-                },
+                    Authorization: `Bearer ${token}`,
+                }
             });
-            const data = await res.json();
-            alert(data.message);
-        } catch (err) {
-            alert(err.message);
-        }
-    };
 
+            const data = await res.json();
+            alert(data.message)
+
+        }
+
+        catch (error) {
+            alert(error.message)
+        }
+
+    };
     return { createFolder };
-};
+}
 
 export default useCreateFolder;

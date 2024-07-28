@@ -1,32 +1,61 @@
-import { useDispatch, useSelector } from "react-redux";
-import { appLogout } from "../store/slices/authSlice";
+import { useSelector } from "react-redux";
 
-const useGenerateNewOtp = () => {
-    const { token } = useSelector((e) => e.auth);
-    const dispatch = useDispatch();
-
+const useGenerateOtp = () => {
+    const {token} = useSelector((e) => e.auth)
     const generateNewOtp = async () => {
         try {
-            const res = await fetch(`https://cloudhome-8fkj.onrender.com/api/v1/otp/generate`, {
+            const res = await fetch(`${process.env.BACKEND_URL}/api/v1/otp/generate`, {
+
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                    'Authorization': `Bearer ${token}`,
+                }
             });
+
             const data = await res.json();
-
+            console.log(data);
             if (data.status === "success") {
-                alert(data.message);
-            } else if (data.message === "Unauthorized") {
-                dispatch(appLogout());
-            } else {
-                alert(data.message);
+                alert(data.message)
             }
-        } catch (err) {
-            alert("Error: " + err.message);
+            else {
+                alert(data.message)
+            }
+        } 
+        catch (error) {
+            alert("Error : " + error.message)
         }
-    };
-
+    }
     return { generateNewOtp };
-};
+}
 
-export default useGenerateNewOtp;
+export default useGenerateOtp
+
+
+
+// import { useSelector } from "react-redux";
+
+// const useGenerateNewOtp = () => {
+//     const { token } = useSelector((e) => e.auth);
+
+//     const generateNewOtp = async () => {
+//         try {
+//             const res = await fetch(`${process.env.BACKEND_URL}/api/v1/otp/generate`, {
+//                 headers: {
+//                     Authorization: `Bearer ${token}`,
+//                 },
+//             });
+//             const data = await res.json();
+
+//             if (data.status === "success") {
+//                 alert(data.message);
+//             } else {
+//                 alert(data.message);
+//             }
+//         } catch (err) {
+//             alert("Error: " + err.message);
+//         }
+//     };
+
+//     return { generateNewOtp };
+// };
+
+// export default useGenerateNewOtp;

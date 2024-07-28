@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import useCreateFolder from "../hooks/useCreateFolder";
 import useGetFileFolders from "../hooks/useGetFileFolders";
 import useUploadFile from "../hooks/useUploadFile";
+import "../styles/homePage.css";
 
 const HomePage = () => {
     const [newFolder, setNewFolder] = useState("");
@@ -23,7 +24,7 @@ const HomePage = () => {
     };
 
     const handleAllowCreateFolder = () => {
-        setShowCreateFolder(true);
+        setShowCreateFolder(true)
     };
 
     const handleCreateFolder = async () => {

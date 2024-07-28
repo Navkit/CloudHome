@@ -1,45 +1,48 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const { ObjectId } = mongoose.Schema.Types;
-
-const otpSchema = new mongoose.Schema(
-    {
-        otp: {
-            type: String,
-            required: true,
-        },
-        email: {
-            type: String,
-            required: true,
-        },
-        userId: {
-            type: ObjectId,
-            required: true,
-            ref: "Users",
-        },
-        isVerified: {
-            type: Boolean,
-            default: false,
-        },
+const otpSchema = new mongoose.Schema({
+    otp: {
+        type: String,
+        required: true,
     },
-    { timestamps: true }
-);
+    email: {
+        type: String,
+        required: true,
+    },
 
-otpSchema.methods.verifyOtp = async (otp, hashedOtp) => {
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
+    },
+
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+
+},{timestamps: true})
+
+
+otpSchema.methods.verifyOTP = async (otp, hashedOtp) => {
     return bcrypt.compare(otp, hashedOtp);
-};
+}
 
-otpSchema.pre("save", async function (next) {
+otpSchema.pre('save', async function (next) {
+
     if (this.isModified("otp")) {
         const hashedOtp = await bcrypt.hash(this.otp, 12);
         this.otp = hashedOtp;
         next();
-    } else {
-        next();
     }
-});
 
-const OtpModel = mongoose.model("OTPs", otpSchema);
+    else {
+        next()
+    }
+})
 
-module.exports = OtpModel;
+
+const OtpModel = mongoose.model('OTPs', otpSchema);
+
+module.exports = OtpModel

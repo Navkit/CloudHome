@@ -1,0 +1,153 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.homepage-main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px 40px;
+    background-color: #110c0c;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.homepage-main-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styles */
+h3 {
+    color: #444;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+}
+
+/* Navigation Styles */
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    gap: 10px;
+    align-items: center;
+}
+
+.breadcrumb li {
+    cursor: pointer;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.breadcrumb li:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.actions button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+}
+
+.actions button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.file-upload-input {
+    display: none;
+}
+
+/* Folder/File Display */
+.files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.folder-file {
+    background-color: #e9f7fd;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.folder-file:hover {
+    background-color: #d4effc;
+    transform: translateY(-5px);
+}
+
+.folder-file p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Create Folder Modal */
+.create-folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.create-folder input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.create-folder button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+    width: 100%;
+}
+
+.create-folder button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}

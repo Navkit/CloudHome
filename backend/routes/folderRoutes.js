@@ -1,8 +1,9 @@
 const express = require("express");
-const { createFolder } = require("../controller/folderControllers.js");
+
+const {createFolder} = require("../controller/folderControllers")
 
 const folderRouter = express.Router();
 
-folderRouter.post("/create", createFolder);
+folderRouter.post("/create", createFolder)
 
 module.exports = folderRouter;
